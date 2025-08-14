@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CustomMVVMDialogs.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="200"
+        Width="600" Height="200"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        x:Class="CustomMVVMDialogs.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Dialogs">
+  <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+        RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
+    <Grid.Styles>
+      <Style Selector="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="5"/>
+      </Style>
+
+      <Style Selector="TextBox,ComboBox">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="350"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="5"/>
+      </Style>
+
+      <Style Selector="Button">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="5"/>
+      </Style>      
+    </Grid.Styles>
+    
+    <TextBlock Text="Folder path:"/>
+    <TextBlock Text="Save file path:" Grid.Row="1"/>
+    <TextBlock Text="Open file path:" Grid.Row="2"/>
+    
+    <TextBox Name="txtFolder" IsReadOnly="True" Grid.Column="1"/>
+    <TextBox Name="txtSaveFile" IsReadOnly="True" Grid.Row="1" Grid.Column="1"/>
+
+    <ComboBox Name="cmbOpenFile" Grid.Row="2" Grid.Column="1">
+      <ComboBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+                     FontWeight="Normal"
+                     Text="{Binding}"/>
+        </DataTemplate>
+      </ComboBox.ItemTemplate>
+    </ComboBox>
+    
+    <Button Name="btnBrowseFolder" Content="..." Grid.Column="2"/>
+    <Button Name="btnBrowseSaveFile" Content="..." Grid.Row="1" Grid.Column="2"/>
+    <Button Name="btnBrowseOpenFiles" Content="..." Grid.Row="2" Grid.Column="2"/> 
+  </Grid>
+</Window>
